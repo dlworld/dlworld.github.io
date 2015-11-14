@@ -15,14 +15,16 @@ gems:                [jekyll-paginate]
 paginate:            5
 paginate_path:       "page:num"    
 
+baidu_analytics:     dlworld    
+
 # About/contact
 author:
   name:              dlworld
   #url:               https://twitter.com/mdo
   email:             linwendeng@gmail.com
 
-theme:
-  disqus_shortname: dlworld
+#theme:
+#  disqus_shortname: dlworld
 
 # Build settings
 markdown: kramdown
