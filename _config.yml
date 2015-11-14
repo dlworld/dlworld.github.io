@@ -6,8 +6,8 @@ permalink:           pretty
 
 # Setup
 title:               Hello DLWorld
-tagline:             'DLWorld Blog'
-description: >        'A reserved <a href="http://jekyllrb.com" target="_blank">Jekyll</a> theme that places the utmost gravity on content with a hidden drawer. Made by <a href="https://twitter.com/mdo" target="_blank">@mdo</a>.'
+tagline:             'Blog'
+description:         ''        
 url:                 http://dlworld.github.io
 github_username:     dlworld    
 baseurl:             ''
@@ -18,8 +18,14 @@ paginate_path:       "page:num"
 # About/contact
 author:
   name:              dlworld
-  url:               https://twitter.com/mdo
+  #url:               https://twitter.com/mdo
   email:             linwendeng@gmail.com
+
+theme:
+  disqus_shortname: dlworld
+
+# Build settings
+markdown: kramdown
 
 # Custom vars
 version:             1.0.0
