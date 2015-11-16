@@ -1,29 +1,41 @@
 ---
 layout: post
 title: 使用Github Page做技术博客
-tag: git
+tags: git
 ---
 
-## 注册Github帐号
+## 基本步骤
+
+### 注册Github帐号
+
 略过
 
-## 配置本地Git
-用户名和邮箱，如果之前用过可以跳过
+### 配置本地Git
 
-还可以配置保存密码
+1. 用户名和邮箱，如果之前用过可以跳过
+```
+git config --global user.name “dlworld"  
+git config --global user.email “linwendeng@mail.com”  
+```
+
+1. 还可以配置保存密码，可选
+```
+dlw@dlw:Workspace$ git config --global credential.helper cache
+dlw@dlw:Workspace$ git config --global credential.helper 'cache --timeout=3600000'
+```
 
 
-## 创建Repo
-dlworld.github.io
+### 创建Repo
+创建格式为**username**.github.io的项目，如：dlworld.github.io
 
-## 选择模板
+### 选择模板
 使用的是基于poole的lanyon，比较简洁。
 
 ```
 dlw@dlw$ git clone https://github.com/poole/lanyon.git dlworld.github.io
 ```
 
-## 配置
+### 配置
 配置文件为_config.yml
 
 ```
@@ -50,7 +62,11 @@ author:
   email:             linwendeng@gmail.com
 # Build settings
 markdown: kramdown
+kramdown:
+  input: GFM                   # use Github Flavored Markdown !important
 ```
+- paginate，分页插件，
+- kramdown，必须指明input GFM，否则代码无法正常换行
 
 ## 提交
 
@@ -65,9 +81,10 @@ dlw@dlw:dlworld.github.io$ git push origin +master
 ```
 
 
-# 本地调试
+## 本地调试
 
-## 安装ruby包
+### 安装ruby包
+
 1. 修ruby仓库
 由于rubygems在国内不便访问，可改用淘宝的仓库
 
@@ -91,11 +108,13 @@ dlw@dlw:dlworld.github.io$ sudo bundle exec jekyll serve
 ```
 
 1. 查看
+
 浏览器打开127.0.0.1:4000
 
 
-# 其它
-## 使用SSH替换HTTPS
+## 其它
+
+### 使用SSH替换HTTPS
 
 ```
 dlw@dlw:dlworld.github.io$ git remote -v
