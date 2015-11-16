@@ -5,9 +5,12 @@ categories: [github, jekyll]
 tags: git
 ---
 
-## 基本步骤
+* 目录
+{:toc}
 
-### 注册Github帐号
+## 基本使用
+
+### 注册Github
 
 略过
 
@@ -71,11 +74,14 @@ kramdown:
 - paginate，分页插件，
 - kramdown，必须指明input GFM，否则代码无法正常换行
 
-## 提交
+### 提交
+
+本地编辑完成/测试（见高级配置）后，就可提交到github。
 
 ```
 dlw@dlw:dlworld.github.io$ git push origin master
 ```
+提交后会自动编译，如果没有错误，就可以通过**username**.github.io访问。
 
 *注：*如果远程版本库包含您本地尚不存在的提交，可以强制提交
 
@@ -83,12 +89,11 @@ dlw@dlw:dlworld.github.io$ git push origin master
 dlw@dlw:dlworld.github.io$ git push origin +master
 ```
 
+## 高级配置
 
-## 本地调试
+### 本地调试
 
-### 安装ruby包
-
-1. 修ruby仓库
+1. 修改ruby仓库
 由于rubygems在国内不便访问，可改用淘宝的仓库
 
 ```
@@ -111,11 +116,18 @@ dlw@dlw:dlworld.github.io$ sudo bundle exec jekyll serve
 ```
 
 1. 查看
-
 浏览器打开127.0.0.1:4000
 
+### 文章归档
+categories
 
-## 其它
+### 文章目录
+Jekyll的Markdown渲染器kramdown已经支持目录树（Table Of Content）功能，只需在文章内标识toc生成的位置即可。
+
+```
+* 目录
+{:toc}
+```
 
 ### 使用SSH替换HTTPS
 
