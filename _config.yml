@@ -25,6 +25,13 @@ author:
 
 #theme:
 #  disqus_shortname: dlworld
+#
+# Duoshuo 
+comments:
+    provider: duoshuo
+    duoshuo:
+        short_name: dlworld
+#duoshuo_share: true    
 
 # Build settings
 markdown: kramdown
