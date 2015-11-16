@@ -1,6 +1,7 @@
 ---
 layout: post
 title: 使用Github Page做技术博客
+categories: [github, jekyll]
 tags: git
 ---
 
@@ -13,12 +14,14 @@ tags: git
 ### 配置本地Git
 
 1. 用户名和邮箱，如果之前用过可以跳过
+
 ```
 git config --global user.name “dlworld"  
 git config --global user.email “linwendeng@mail.com”  
 ```
 
 1. 还可以配置保存密码，可选
+
 ```
 dlw@dlw:Workspace$ git config --global credential.helper cache
 dlw@dlw:Workspace$ git config --global credential.helper 'cache --timeout=3600000'
