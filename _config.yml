@@ -1,0 +1,42 @@
+# Permalinks
+#
+# Use of `relative_permalinks` ensures post links from the index work properly.
+permalink:           pretty
+#relative_permalinks: true
+
+# Setup
+title:               Hello DLWorld
+tagline:             '专至 广博'
+description:         ''        
+url:                 http://dlworld.github.io
+github_username:     dlworld    
+baseurl:             ''
+gems:                [jekyll-paginate]    
+paginate:            10
+paginate_path:       "page:num"    
+
+baidu_analytics:     dlworld    
+
+# About/contact
+author:
+  name:              dlworld
+  #url:               https://twitter.com/mdo
+  email:             linwendeng@gmail.com
+
+#theme:
+#  disqus_shortname: dlworld
+#
+# Duoshuo 
+comments:
+    provider: duoshuo
+    duoshuo:
+        short_name: dlworld
+#duoshuo_share: true    
+
+# Build settings
+markdown: kramdown
+kramdown:
+  input: GFM                            # use Github Flavored Markdown !important    
+
+# Custom vars
+version:             1.0.0
