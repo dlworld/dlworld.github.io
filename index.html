@@ -1,4 +1,5 @@
 ---
+layout: default
 title: 主页
 ---
 
@@ -13,7 +14,7 @@ title: 主页
 
     <span class="post-date">{{ post.date | date_to_string }}</span>
 
-    {{ post.content }}
+    {{ post.content || split:'<!--break-->' | first }}
   </div>
   {% endfor %}
 </div>
@@ -34,3 +35,4 @@ title: 主页
     <span class="pagination-item newer">下一页</span>
   {% endif %}
 </div>
+
