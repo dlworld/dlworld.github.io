@@ -8,6 +8,6 @@ title: 存储培训
 <div>
   <h2>{{ category | first }}</h2>  
   <ul class="arc-list">
-    <li><a href="{{ storage-training | prepend: site.baseurl }}">存储知识培训</a></li>
+    <li><a href="{{ site.baseurl/storage-training }}">存储知识培训</a></li>
   </ul>
 </div>
