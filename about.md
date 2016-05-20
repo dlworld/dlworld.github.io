@@ -2,7 +2,13 @@
 layout: page
 title: 关于作者
 ---
-Linux开发工程师，做过不同ARCH（ARM/MIPS/SPARC）的内核适配，现在做云计算，OpenStack/Ceph。
+个人经历：
+- 噢易云计算
+ - 存储
+ - 虚拟化
+
+- 麒麟操作系统
+ - 内核硬件适配
 
 ### 联系我
 邮箱：linwendeng@gmail.com
