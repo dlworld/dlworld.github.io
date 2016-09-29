@@ -37,6 +37,8 @@ comments:
 markdown: kramdown
 kramdown:
   input: GFM                            # use Github Flavored Markdown !important    
+  hard_wrap: false
+  syntax_highlighter: rouge
 
 # Custom vars
 version:             1.0.0
