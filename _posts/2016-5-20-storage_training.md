@@ -9,6 +9,6 @@ tags: 存储
 
 <div>
   <ul class="arc-list">
-    <li><a href="/storage-training">存储知识培训</a></li>
+    <li><a href="/slides/storage-training.html">存储知识培训</a></li>
   </ul>
 </div>
