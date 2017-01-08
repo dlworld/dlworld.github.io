@@ -1,7 +1,7 @@
 ---
 layout: post
 title: vagrant搭建coreos实验环境
-categories: [coreos]
+categories: [linux]
 tags: coreos
 ---
 

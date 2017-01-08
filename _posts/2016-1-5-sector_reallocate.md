@@ -1,7 +1,7 @@
 ---
 layout: post
 title: sector reallocate
-categories: [disk]
+categories: [linux]
 tags: disk
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: coreos sdk开发环境配置
-categories: [coreos]
+categories: [linux]
 tags: coreos
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: page
 title: 存储培训
-categories: [ppt, storage]
+categories: [ppt]
 tags: 存储
 #permalink: /archive/
 #banner_image: sample-banner-image-3.jpg

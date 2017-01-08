@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Linux快设备" 
-categories: [linux, block]
+title: "Linux块设备" 
+categories: [linux]
 tags: block
 ---
 

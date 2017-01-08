@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Glance cinder backend
-categories: [openstack，cinder]
+categories: [openstack]
 tags: openstack,cinder
 ---
 
