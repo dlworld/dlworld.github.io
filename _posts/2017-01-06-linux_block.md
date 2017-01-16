@@ -5,6 +5,11 @@ categories: [linux]
 tags: block
 ---
 
+Linux block layer分析。
+
+<!--break-->
+
+
 * 目录
 {:toc}
 
