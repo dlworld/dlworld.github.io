@@ -9,7 +9,6 @@ tags: block
 {:toc}
 
 
-注：本文涉及的代码分析基于
 
 
 # 用户空间访问
@@ -30,12 +29,18 @@ dlw@dlw:linux$ file /dev/sda1
 
 实际的IO最终由设备驱动完成，块设备层定义了多种不同的处理方法，还提供了设备驱动注册自己的处理方法机制。
 
-内核还会使用电梯算法将请求队列里的IO进行排序，目前包含的算法包括：noop，deadline，cfq和anticipatory。
+内核还会使用电梯算法将请求队列里的IO进行排序，目前包含的算法包括：noop，deadline和cfq。
 
-内核块设备系统分为4个部分：
+![](./images/blkdevarch_arch2.png)
+
+
+内核块设备系统分为3个部分：
 - 通用块层(Block Layer)负责维持一个I/O请求在上层文件系统与底层物理磁盘之间的关系。在通用块层中，通常用一个bio结构体来对应一个I/O请求。
-- 块设备驱动层(Block Driver)需要隐藏硬件特性，提供访问设备的统一APIs。
 - 调度层(IO Scheduler)，核心是电梯算法。传统机械硬盘随机访问性能差，当多个请求提交到设备时，性能很大程度上依赖于请求的顺序。内核汇集IO请求，排序后再调用设备驱动处理。
+- 块设备驱动层(Block Driver)需要隐藏硬件特性，提供访问设备的统一APIs。
+
+
+
 
 # Block Layer
 ![](./images/blkdevarch_arch1.png)
@@ -59,7 +64,7 @@ block layer从提交队列将请求移到硬件队列，可以移动的数量由
 
 
 
-﻿
+
 ### 多队列提交路径
 
 1. 进程分发到per-cpu软件队列
@@ -468,6 +473,7 @@ static struct virtio_driver virtio_blk = {
 ...
 };
 ```
+
 ### 硬盘注册
 
 内核中gendisk结构体表示硬盘，注册磁盘让系统可以访问主要是对gendisk结构体操作。
@@ -484,15 +490,141 @@ blk_mq_init_queue分配请求队列。
 
 # IO调度
 
+调度器对请求的操作
+- 合并，连续扇区请求进行合并
+- 排序，基于LBA
+- 计时，请求提交的时间
+
+## 合并
+
+如果一个请求的结束扇区与另一个请求的开始扇区相连，且请求方向一致（读或写），则可以合并(merge)成一个大的请求。合并有两种方式：
+- front-merge，新的请求的起始扇区在现有请求之前
+- back-merge，新的请求的起始扇区在现有请求之后
+请求合并之后，还可能与已有的请求再次组合（coalesce）。如下图中的6与4,5back merge后，可以与7coalesce。
+
+![](./images/blkdevarch_merge.png)
+
+
+通用elevator层维护了一个用结束扇区号索引的请求哈希表，用于发现back-merge。但没有提供front-merge函数，需要特定调度算法自己实现。
+通用elevator层还提供了一个‘one-hit’的缓存（last_merge）保持了最后一次合并的请求。
+
+## 实现
+
+### elevator
+
+
+
+```
+struct elevator_type
+{
+    struct elevator_ops ops;            /* 由调度算法实现 */
+    size_t icq_size;    /* see iocontext.h */
+    size_t icq_align;   /* ditto */
+    struct elv_fs_entry *elevator_attrs;
+    /* managed by elevator core */
+    char icq_cache_name[ELV_NAME_MAX + 5];  /* elvname + "_io_cq" */
+    struct list_head list;
+};
+```
+
+** elevator_ops **
+- elevator_fn，队列中插入一个新请求
+- elevator_merge_fn，决定一个新的buffer是否可以与已有的请求合并
+- elevator_dequeue_fn，请求从active list取出时调用
+```
+    elevator_merge_fn *elevator_merge_fn;
+    elevator_merged_fn *elevator_merged_fn;
+    elevator_merge_req_fn *elevator_merge_req_fn;
+    elevator_allow_bio_merge_fn *elevator_allow_bio_merge_fn;
+    elevator_allow_rq_merge_fn *elevator_allow_rq_merge_fn;
+    elevator_bio_merged_fn *elevator_bio_merged_fn;
+     elevator_dispatch_fn *elevator_dispatch_fn;
+    elevator_add_req_fn *elevator_add_req_fn;
+    elevator_activate_req_fn *elevator_activate_req_fn;
+    elevator_deactivate_req_fn *elevator_deactivate_req_fn;
+    elevator_completed_req_fn *elevator_completed_req_fn;
+    elevator_request_list_fn *elevator_former_req_fn;
+    elevator_request_list_fn *elevator_latter_req_fn;
+    elevator_init_icq_fn *elevator_init_icq_fn; /* see iocontext.h */
+    elevator_exit_icq_fn *elevator_exit_icq_fn; /* ditto */
+    elevator_set_req_fn *elevator_set_req_fn;
+    elevator_put_req_fn *elevator_put_req_fn;
+    elevator_may_queue_fn *elevator_may_queue_fn;
+    elevator_init_fn *elevator_init_fn;
+    elevator_exit_fn *elevator_exit_fn;
+    elevator_registered_fn *elevator_registered_fn;
+```
+
+
+# 调度算法
 - noop，实现简单的FIFO，基本的直接合并与排序。Flash设备使用
-- anticipatory，延迟I/O请求，进行临界区的优化排序。
+- anticipatory，延迟I/O请求，进行临界区的优化排序。（Linux 3.0中已废弃）
 - deadline，针对anticipatory缺点进行改善，降低延迟时间。数据库等IO密集型应用
 - cfq，均匀分配I/O带宽，公平机制。
 
+查看方法
+```
+[root@node15 ~]# cat /sys/block/sda/queue/scheduler 
+[noop] deadline cfq 
+```
+
+## Noop
+
+Noop（no-operation）调度器仅提供back-merging和有限的coalescing等基本功能。请求用简单的FIFO队列组织，分发的时候，会按扇区排序插入分发队列。
+
+## Deadline
+
+Deadline调度器限制请求在队列中的时间基础上最大化全局吞吐量。
+
+Deadline调度器中的请求用两种队列管理：
+- sort_list，根据请求扇区号排序的红黑树（red-black tree），用于遍历等待的请求和查找合并机会。读写请求用不同的sort_list保存。
+- fifo_list，读写分开的双向链表。
+新请求会分别加入到两条队列中，但请求一般是从sort_list队列按扇区顺序批量添加到分发队列，类似于CSCAN算法。fifo_batch连续扇区且相同方向的请求被调度器当作一个单元。一次批量传输（batch）结束的条件：
+- 当前数据方向已经没有请求
+- 分发的最后一个请求与下一个请求不连续
+- 请求数量已达到fifo_batch
+
+Deadline调度器中的每个请求都有一个可配置的超时时间，read_expire和write_expire。fifo_list队列前面的请求超时时，deadline就会把请求分发出去。
+
+1. 从当前batch分发
+1. 选择一个新数据方向。
+1. 根据选择的数据方向，检查fifo_list队列的超时请求。如果有超时，则发起一个新的batch
+1. 
+
+Deadline用elevator层提供的扇区排序哈希表进行back-merging，用sort_list发现相连的请求执行front-merging。
+
+```
+struct deadline_data {
+    struct rb_root sort_list[2];    /* 读写使用独立的 */
+    struct list_head fifo_list[2];
+    struct request *next_rq[2];  /* 排序队列中的下一个请求 */ 
+    unsigned int batching;      /* 连续的请求数量 */
+    unsigned int starved;      /* 读starve写的次数 */
+   /* 可配置变量 */
+    int fifo_expire[2];
+    int fifo_batch;
+    int writes_starved;
+    int front_merges;
+}
+```
+
+### 可调参数
+
+参数 | 默认值 | 描述
+---|---|---
+read_expire | HZ/2 | 读请求超时
+write_expire | 5*HZ | 写请求超时
+writes_starved | 2 | 一次写batch前可以进行的读batch次数
+fifo_batch | 16 | 每个batch最大请求数
+front_merges | 1 | 是否检查front-merge
+
+﻿
 # 参考
 [Linux Block Device Architecture](https://yannik520.github.io/blkdevarch.html)
 [High Performance Storage with blk-mq and scsi-mq](http://events.linuxfoundation.org/sites/events/files/slides/scsi.pdf)
 [The multiqueue block layer](https://lwn.net/Articles/552904/)
 [LDD3-CH16 Block Drivers](https://static.lwn.net/images/pdf/LDD3/ch16.pdf)
+[Linux Block I/O Scheduling](http://www.cse.unsw.edu.au/~aaronc/iosched/doc/sched.pdf)
+
 
 
