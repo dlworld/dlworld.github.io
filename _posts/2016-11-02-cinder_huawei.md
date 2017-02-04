@@ -7,6 +7,11 @@ tags: cinder
 #banner_image: sample-banner-image-3.jpg
 ---
 
+
+
+<!--break-->
+
+
 ﻿
 OpenStack Cinder项目发展比较成熟，支持大部分主流存储厂商。但国内只有华为和联想，但联想的是OEM DotHill，驱动直接继承自dothill。
 

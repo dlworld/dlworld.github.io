@@ -5,7 +5,7 @@ categories: [linux]
 tags: block
 ---
 
-Linux block layer分析。
+Linux内核 block layer代码分析。
 
 <!--break-->
 
