@@ -5,7 +5,7 @@ categories: [linux]
 tags: coreos
 ---
 
-
+<!--break-->
 
 ﻿
 Vagrant是虚拟机管理工具，可以方便的添加和启动虚拟机，准备实验环境。

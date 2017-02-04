@@ -5,6 +5,8 @@ categories: [linux]
 tags: coreos
 ---
 
+CoreOS是一个为集群而生的轻量级操作系统，专注于自动化。
+<!--break-->
 
 ## 环境准备
 
