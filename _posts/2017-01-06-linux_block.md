@@ -36,7 +36,7 @@ dlw@dlw:linux$ file /dev/sda1
 
 内核还会使用电梯算法将请求队列里的IO进行排序，目前包含的算法包括：noop，deadline和cfq。
 
-![](../images/blkdevarch_arch2.png)
+![arch2](../images/blkdevarch_arch2.png)
 
 
 内核块设备系统分为3个部分：
