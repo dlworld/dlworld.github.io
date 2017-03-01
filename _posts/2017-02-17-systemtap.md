@@ -55,7 +55,7 @@ Pass 5: run completed in 0usr/20sys/480real ms.
 
 内核引入了一种Kprobe机制，可以用来动态地收集调试和性能信息的工具，是一种非破坏性的工具，用户可以用它跟踪运行中内核任何函数或执行的指令等。但Kprobe并没有提供一种易用的框架，用户需要自己去写模块，然后安装。SystemTap 是利用Kprobe 提供的API来实现动态地监控和跟踪运行中的Linux内核的工具，相比Kprobe，systemtap更加简单，提供给用户简单的命令行接口，以及编写内核指令的脚本语言。SystemTap也支持用户态程序调试。
 
-![](../images/systemtap.png)
+![](http://dlworld.github.io/images/systemtap.png)
 
 
 ## 架构
