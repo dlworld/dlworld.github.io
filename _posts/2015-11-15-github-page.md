@@ -55,7 +55,7 @@ permalink:           pretty
 title:               Hello DLWorld
 tagline:             'Blog'
 description:         ''        
-url:                 http://dlworld.github.io
+url:                 
 github_username:     dlworld    
 baseurl:             ''
 gems:                [jekyll-paginate]    

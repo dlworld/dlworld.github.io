@@ -36,7 +36,7 @@ dlw@dlw:linux$ file /dev/sda1
 
 内核还会使用电梯算法将请求队列里的IO进行排序，目前包含的算法包括：noop，deadline和cfq。
 
-![arch2](http://dlworld.github.io/images/blkdevarch_arch2.png)
+![arch2](/images/blkdevarch_arch2.png)
 
 
 内核块设备系统分为3个部分：
@@ -48,7 +48,7 @@ dlw@dlw:linux$ file /dev/sda1
 
 
 # Block Layer
-![](http://dlworld.github.io/images/blkdevarch_arch1.png)
+![](/images/blkdevarch_arch1.png)
 
 ## blk-mq
 
@@ -75,7 +75,7 @@ block layer从提交队列将请求移到硬件队列，可以移动的数量由
 1. 进程分发到per-cpu软件队列
 1. 软件队列再映射到硬件issue队列
 
-![](http://dlworld.github.io/images/blkdevarch_mq-submit.png)
+![](/images/blkdevarch_mq-submit.png)
 
 
 
@@ -213,7 +213,7 @@ struct bio_vec {
 };
 ```
 
-![](http://dlworld.github.io/images/blkdevarch_bio.png)
+![](/images/blkdevarch_bio.png)
 
 
 ** request **
@@ -264,7 +264,7 @@ struct request_queue {
 
 设备可以按普通文件的方式读写。对于设备文件这种特殊文件，文件系统调用*init_special_inode*设置文件的inode操作为def_blk_fops。当inode被打开后，内核调用文件操作表中的open方法。在def_blk_fops中注册的方法是blkdev_open。
 
-![](http://dlworld.github.io/images/blkdevarch_open.png)
+![](/images/blkdevarch_open.png)
 注：图中do_open应该换成__blkdev_get。
 
 
@@ -364,11 +364,11 @@ blk_queue_make_request定义设备可选的make_request函数。bio结构体传�
 ```
 
 blk_mq_make_request将bio加入到请求队列，使用电梯算法检查应该创建新请求还是扩大已有的请求。如果bio可以加入到已有请求。
-![](http://dlworld.github.io/images/blkdevarch_submitio.png)
+![](/images/blkdevarch_submitio.png)
 
 
 request与bio数据结构体直接的关系：
-![](http://dlworld.github.io/images/blkdevarch_request-bio.png)
+![](/images/blkdevarch_request-bio.png)
 
 ### 新请求 
 
@@ -449,7 +449,7 @@ __bread从设备上读一个块，返回bh。首先检查buffer是否在cache，
 
 
 从缓存中读取buffer的流程图：
-![](http://dlworld.github.io/images/blkdevarch_bread.png)
+![](/images/blkdevarch_bread.png)
 
 
 
@@ -507,7 +507,7 @@ blk_mq_init_queue分配请求队列。
 - back-merge，新的请求的起始扇区在现有请求之后
 请求合并之后，还可能与已有的请求再次组合（coalesce）。如下图中的6与4,5back merge后，可以与7coalesce。
 
-![](http://dlworld.github.io/images/blkdevarch_merge.png)
+![](/images/blkdevarch_merge.png)
 
 
 通用elevator层维护了一个用结束扇区号索引的请求哈希表，用于发现back-merge。但没有提供front-merge函数，需要特定调度算法自己实现。
