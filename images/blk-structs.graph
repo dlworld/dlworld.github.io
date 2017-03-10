@@ -1,0 +1,34 @@
+digraph block_structs {
+    node [ fontname=monaco, fontsize=12, shape=record ];
+    rankdir=LR;
+    buffer_head [label="{<f0> |buffer_head} | <f1> page | <f2> sector | <f3> b_data | <f4> block_device | <f5> address_space | <f6> bh_end_io_t"];
+    block_device [label="{<f0> |block_device} | <f1> inode | <f2> super_block | <f4> hd_struct | <f5> gendisk | <f6> request_queue"];
+    gendisk [label="{<f0> |gendisk } | <f1> disk_part_tbl|<f2> hd_struct|<f3> block_device_operations|<f4> request_queue"];
+    disk_part_tbl [label="{<f0> |disk_part_tbl} | <f1> hd_struct"];
+    hd_struct [label="{<f0> |hd_struct} | <f1> sector_t"];
+    block_device_operations [label="{<f0> |block_device_operations } | open | rw_page | ioctl | check_events"];
+    bio [label="{<f0> |bio} | <f1> block_device | <f2> bio_vec | <f3> bio_set"];
+    bio_vec [label="{<f0> |bio_vec} | <f1> page | <f2> offset | <f3> len"];
+    page [label="<f0> page"];
+    request [label="{<f0> |request} | <f1> request_queue | <f2> bio | <f3> gendisk | <f4> hd_struct | <f5> elv | <f6> request_list"];
+    request_queue [label="{<f0> |request_queue} | <f1> request | <f2> blk_mq_hw_ctx | <f6> elevator_queue | <f3> blk_mq_ops | <f4> make_request_fn | <f5> prep_rq_fn | <f7> blkcg_gq"];
+    gendisk:f1 -> disk_part_tbl:f0;
+    gendisk:f2 -> hd_struct:f0;
+    gendisk:f3 -> block_device_operations:f0;
+    gendisk:f4 -> request_queue:f0;            
+    disk_part_tbl:f1 -> hd_struct:f0;
+    hd_struct:f0 -> hd_struct:f0 [style="dashed"];
+    block_device:f0 -> block_device:f0 [style="dashed"];
+    block_device:f5 -> gendisk:f0;
+    block_device:f6 -> request_queue:f0;
+    bio:f1 -> block_device:f0 [style="dashed"];
+    bio:f2 -> bio_vec:f0;
+    request:f1 -> request_queue:f0;
+    request:f2 -> bio:f0;
+    request:f3 -> gendisk:f0;
+    request_queue:f1 -> request:f0;
+    buffer_head:f4 -> block_device:f0;                  
+    buffer_head:f0 -> buffer_head:f0 [style="dashed"];                  
+    buffer_head:f1 -> page:f0;
+    bio_vec:f1 -> page:f0;                
+}
