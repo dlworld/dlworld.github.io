@@ -114,7 +114,7 @@ HostIP | 	-	 | 要连接存储的计算节点IP | 	All
 
 ## 参考文档
 
-[华为存储OpenStack驱动](https://github.com/huaweistorage/OpenStack_Driver/tree/master/Cinder)
-[Cinder华为存储驱动配置](http://docs.openstack.org/newton/config-reference/block-storage/drivers/huawei-storage-driver.html)
+- [华为存储OpenStack驱动](https://github.com/huaweistorage/OpenStack_Driver/tree/master/Cinder)
+- [Cinder华为存储驱动配置](http://docs.openstack.org/newton/config-reference/block-storage/drivers/huawei-storage-driver.html)
 
 

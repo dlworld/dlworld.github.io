@@ -625,11 +625,11 @@ front_merges | 1 | 是否检查front-merge
 
 ﻿
 # 参考
-[Linux Block Device Architecture](https://yannik520.github.io/blkdevarch.html)
-[High Performance Storage with blk-mq and scsi-mq](http://events.linuxfoundation.org/sites/events/files/slides/scsi.pdf)
-[The multiqueue block layer](https://lwn.net/Articles/552904/)
-[LDD3-CH16 Block Drivers](https://static.lwn.net/images/pdf/LDD3/ch16.pdf)
-[Linux Block I/O Scheduling](http://www.cse.unsw.edu.au/~aaronc/iosched/doc/sched.pdf)
+- [Linux Block Device Architecture](https://yannik520.github.io/blkdevarch.html)
+- [High Performance Storage with blk-mq and scsi-mq](http://events.linuxfoundation.org/sites/events/files/slides/scsi.pdf)
+- [The multiqueue block layer](https://lwn.net/Articles/552904/)
+- [LDD3-CH16 Block Drivers](https://static.lwn.net/images/pdf/LDD3/ch16.pdf)
+- [Linux Block I/O Scheduling](http://www.cse.unsw.edu.au/~aaronc/iosched/doc/sched.pdf)
 
 
 
