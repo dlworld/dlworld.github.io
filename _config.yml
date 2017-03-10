@@ -23,6 +23,11 @@ author:
   #url:               https://twitter.com/mdo
   email:             linwendeng@gmail.com
 
+highlight: #代码高亮
+  enable: true #是否启用
+  line_number: true #是否显示行号
+  tab_replace:
+
 #theme:
 #  disqus_shortname: dlworld
 #
