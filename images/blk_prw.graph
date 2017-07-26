@@ -1,0 +1,25 @@
+digraph blk_rw {
+    node [ fontname=monaco, fontsize=12, shape=oval ];
+    rankdir=TD;
+    "virtio-blk::submit_requests" -> "backend::blk_aio_preadv";
+    "virtio-blk::submit_requests" -> "backend::blk_aio_pwritev";
+    "backend::blk_aio_pwritev" -> blk_aio_prwv;
+    blk_aio_prwv -> blk_aio_write_entry;
+    blk_aio_write_entry -> blk_co_pwritev;
+    blk_aio_write_entry -> blk_aio_complete;
+    blk_co_pwritev -> "io::bdrv_co_pwritev";
+    "io::bdrv_co_pwritev" -> bdrv_aligned_pwritev;
+    bdrv_aligned_pwritev -> bdrv_driver_pwritev;
+    bdrv_aligned_pwritev -> bdrv_set_dirty;
+    bdrv_driver_pwritev -> "drv::bdrv_co_pwritev";
+    "drv::bdrv_co_pwritev" -> "qcow2::qcow2_co_pwritev";
+    "drv::bdrv_co_pwritev" -> "raw-format::raw_co_pwritev";
+    "qcow2::qcow2_co_pwritev" -> "block::bdrv_co_pwritev";
+    "block::bdrv_aligned_pwritev" -> "file-posix::raw_co_pwritev";
+    "raw-format::raw_co_pwritev" -> "block::bdrv_co_pwritev";
+    "file-posix::raw_co_pwritev" -> raw_co_prw;
+    raw_co_prw -> laio_co_submit [label="Linux AIO"];
+    raw_co_prw -> paio_submit_co;
+    paio_submit_co -> thread_pool_submit_co;
+    laio_co_submit -> io_submit;
+}

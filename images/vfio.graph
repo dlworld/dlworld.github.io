@@ -1,0 +1,36 @@
+digraph vfio {
+    node [ fontname=monaco, fontsize=12, shape=record ];
+    rankdir=LR;
+    vfio_group [label="{<f0> | vfio_group} | <f2> iommu_group | <f1> vfio_container | kvm | device_list | notifier"];
+    vfio_container [label="{<f0> | vfio_container} | <f1> vfio_iommu_driver | <f2> iommu_data"];
+    vfio_device [label="{<f0> | vfio_device} | <f1> vfio_device_ops | <f2> vfio_group | device_data"];
+    vfio_iommu_driver [label="{<f0> | vfio_iommu_driver} | <f1> vfio_next | <f2> vfio_iommu_driver_ops"];
+    iommu_group [label="{<f0> | iommu_group} | id | <f1> iommu_domain | <f2> iommu_data "];
+    vfio_iommu [label="{<f0> | vfio_iommu} | <f1> domain_list | <f2> dma_list | notifier"];
+    vfio_domain [label="{<f0> | vfio_domain} | next | <f1> iommu_domain | <f2> group_list"];
+    vfio_dma [label="{<f0> | vfio_dma} | iova | vaddr | size | task_struct"];
+
+    iommu_domain [label="{<f0> | iommu_domain} | type | <f1> iommu_ops | iommu_fault_handler_t | <f2> iommu_domain_geometry "];
+    iommu_device [label="{<f0> | iommu_device} | device | <f1> iommu_ops"];
+    iommu_ops [label="{<f0> | iommu_ops} | domain_alloc/free | attach/detach_dev | map/unmap | map_sg | add/remove_device"];
+
+    vfio_device_ops [label="{<f0> | vfio_device_ops} | open | release | read | write | ioctl | mmap | request"];
+    vfio_iommu_driver_ops [label="{<f0> | <f1> vfio_iommu_driver_ops} | open | release | read | write | ioctl | mmap | attach/detach_group | pin/unpin_pages | regiester/unregister_notifier"];
+    vfio_iommu_driver_ops_type1 [label="<f0> vfio_iommu_driver_ops_type1"];
+
+    vfio_iommu_driver:f1 -> vfio_iommu_driver:f0;
+    vfio_iommu_driver:f2 -> vfio_iommu_driver_ops:f0;
+    vfio_iommu_driver_ops:f1 -> vfio_iommu_driver_ops_type1:f0;                      
+    vfio_device:f1 -> vfio_device_ops:f0;
+    vfio_device:f2 -> vfio_group:f0;
+    vfio_container:f1 -> vfio_iommu_driver:f0;                
+    vfio_container:f2 -> vfio_iommu:f0;                
+    vfio_group:f1 -> vfio_container:f0;                   
+    vfio_group:f2 -> iommu_group:f0;                   
+    vfio_iommu:f1 -> vfio_domain:f0 [style="dashed"];
+    vfio_iommu:f2 -> vfio_dma:f0;
+    vfio_domain:f1 -> iommu_domain:f0;               
+    iommu_group:f2 -> vfio_iommu:f0;               
+    iommu_device:f1 -> iommu_ops:f0;               
+    iommu_domain:f1 -> iommu_ops:f0;               
+}

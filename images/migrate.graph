@@ -1,0 +1,10 @@
+digraph vfio {
+    node [ fontname=monaco, fontsize=12, shape=record ];
+    rankdir=LR;
+    doPeer2PeerMigrate3 -> doTunnelMigrate;
+    doPeer2PeerMigrate3 -> qemuMigrationConfirmPhase;
+    doTunnelMigrate -> qemuMigrationRun;
+    qemuMigrationRun -> qemuMonitorMigrateToHost;
+    qemuMigrationRun -> qemuMigrationWaitForCompletion;
+    qemuMonitorMigrateToHost -> qemuMonitorJSONCommand;
+}

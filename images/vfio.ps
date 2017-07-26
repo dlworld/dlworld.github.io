@@ -1,0 +1,1202 @@
+%!PS-Adobe-3.0
+%%Creator: graphviz version 2.38.0 (20140413.2041)
+%%Title: vfio
+%%Pages: (atend)
+%%BoundingBox: (atend)
+%%EndComments
+save
+%%BeginProlog
+/DotDict 200 dict def
+DotDict begin
+
+/setupLatin1 {
+mark
+/EncodingVector 256 array def
+ EncodingVector 0
+
+ISOLatin1Encoding 0 255 getinterval putinterval
+EncodingVector 45 /hyphen put
+
+% Set up ISO Latin 1 character encoding
+/starnetISO {
+        dup dup findfont dup length dict begin
+        { 1 index /FID ne { def }{ pop pop } ifelse
+        } forall
+        /Encoding EncodingVector def
+        currentdict end definefont
+} def
+/Times-Roman starnetISO def
+/Times-Italic starnetISO def
+/Times-Bold starnetISO def
+/Times-BoldItalic starnetISO def
+/Helvetica starnetISO def
+/Helvetica-Oblique starnetISO def
+/Helvetica-Bold starnetISO def
+/Helvetica-BoldOblique starnetISO def
+/Courier starnetISO def
+/Courier-Oblique starnetISO def
+/Courier-Bold starnetISO def
+/Courier-BoldOblique starnetISO def
+cleartomark
+} bind def
+
+%%BeginResource: procset graphviz 0 0
+/coord-font-family /Times-Roman def
+/default-font-family /Times-Roman def
+/coordfont coord-font-family findfont 8 scalefont def
+
+/InvScaleFactor 1.0 def
+/set_scale {
+       dup 1 exch div /InvScaleFactor exch def
+       scale
+} bind def
+
+% styles
+/solid { [] 0 setdash } bind def
+/dashed { [9 InvScaleFactor mul dup ] 0 setdash } bind def
+/dotted { [1 InvScaleFactor mul 6 InvScaleFactor mul] 0 setdash } bind def
+/invis {/fill {newpath} def /stroke {newpath} def /show {pop newpath} def} bind def
+/bold { 2 setlinewidth } bind def
+/filled { } bind def
+/unfilled { } bind def
+/rounded { } bind def
+/diagonals { } bind def
+/tapered { } bind def
+
+% hooks for setting color 
+/nodecolor { sethsbcolor } bind def
+/edgecolor { sethsbcolor } bind def
+/graphcolor { sethsbcolor } bind def
+/nopcolor {pop pop pop} bind def
+
+/beginpage {	% i j npages
+	/npages exch def
+	/j exch def
+	/i exch def
+	/str 10 string def
+	npages 1 gt {
+		gsave
+			coordfont setfont
+			0 0 moveto
+			(\() show i str cvs show (,) show j str cvs show (\)) show
+		grestore
+	} if
+} bind def
+
+/set_font {
+	findfont exch
+	scalefont setfont
+} def
+
+% draw text fitted to its expected width
+/alignedtext {			% width text
+	/text exch def
+	/width exch def
+	gsave
+		width 0 gt {
+			[] 0 setdash
+			text stringwidth pop width exch sub text length div 0 text ashow
+		} if
+	grestore
+} def
+
+/boxprim {				% xcorner ycorner xsize ysize
+		4 2 roll
+		moveto
+		2 copy
+		exch 0 rlineto
+		0 exch rlineto
+		pop neg 0 rlineto
+		closepath
+} bind def
+
+/ellipse_path {
+	/ry exch def
+	/rx exch def
+	/y exch def
+	/x exch def
+	matrix currentmatrix
+	newpath
+	x y translate
+	rx ry scale
+	0 0 1 0 360 arc
+	setmatrix
+} bind def
+
+/endpage { showpage } bind def
+/showpage { } def
+
+/layercolorseq
+	[	% layer color sequence - darkest to lightest
+		[0 0 0]
+		[.2 .8 .8]
+		[.4 .8 .8]
+		[.6 .8 .8]
+		[.8 .8 .8]
+	]
+def
+
+/layerlen layercolorseq length def
+
+/setlayer {/maxlayer exch def /curlayer exch def
+	layercolorseq curlayer 1 sub layerlen mod get
+	aload pop sethsbcolor
+	/nodecolor {nopcolor} def
+	/edgecolor {nopcolor} def
+	/graphcolor {nopcolor} def
+} bind def
+
+/onlayer { curlayer ne {invis} if } def
+
+/onlayers {
+	/myupper exch def
+	/mylower exch def
+	curlayer mylower lt
+	curlayer myupper gt
+	or
+	{invis} if
+} def
+
+/curlayer 0 def
+
+%%EndResource
+%%EndProlog
+%%BeginSetup
+14 default-font-family set_font
+1 setmiterlimit
+% /arrowlength 10 def
+% /arrowwidth 5 def
+
+% make sure pdfmark is harmless for PS-interpreters other than Distiller
+/pdfmark where {pop} {userdict /pdfmark /cleartomark load put} ifelse
+% make '<<' and '>>' safe on PS Level 1 devices
+/languagelevel where {pop languagelevel}{1} ifelse
+2 lt {
+    userdict (<<) cvn ([) cvn load put
+    userdict (>>) cvn ([) cvn load put
+} if
+
+%%EndSetup
+setupLatin1
+%%Page: 1 1
+%%PageBoundingBox: 36 36 1459 666
+%%PageOrientation: Portrait
+0 0 1 beginpage
+gsave
+36 36 1423 630 boxprim clip newpath
+1 1 set_scale 0 rotate 40 40 translate
+% vfio_group
+gsave
+1 setlinewidth
+0 0 0 nodecolor
+newpath 180.5 308.5 moveto
+180.5 434.5 lineto
+302.5 434.5 lineto
+302.5 308.5 lineto
+closepath stroke
+0 0 0 nodecolor
+12 /monaco set_font
+190 420.9 moveto 8 ( ) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 207.5 413.5 moveto
+207.5 434.5 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+217 420.9 moveto 76 (vfio_group) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 180.5 413.5 moveto
+302.5 413.5 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+200 399.9 moveto 83 (iommu_group) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 180.5 392.5 moveto
+302.5 392.5 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+188.5 378.9 moveto 106 (vfio_container) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 180.5 371.5 moveto
+302.5 371.5 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+230 357.9 moveto 23 (kvm) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 180.5 350.5 moveto
+302.5 350.5 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+200 336.9 moveto 83 (device_list) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 180.5 329.5 moveto
+302.5 329.5 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+211 315.9 moveto 61 (notifier) alignedtext
+grestore
+% vfio_container
+gsave
+1 setlinewidth
+0 0 0 nodecolor
+newpath 354 289 moveto
+354 352 lineto
+500 352 lineto
+500 289 lineto
+closepath stroke
+0 0 0 nodecolor
+12 /monaco set_font
+362 338.4 moveto 8 ( ) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 378 331 moveto
+378 352 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+386 338.4 moveto 106 (vfio_container) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 354 331 moveto
+500 331 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+363 317.4 moveto 128 (vfio_iommu_driver) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 354 310 moveto
+500 310 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+389 296.4 moveto 76 (iommu_data) alignedtext
+grestore
+% vfio_group->vfio_container
+gsave
+1 setlinewidth
+0 0 0 edgecolor
+newpath 303.5 382.5 moveto
+328.34 382.5 326.43 352.22 343.75 343.7 curveto
+stroke
+0 0 0 edgecolor
+newpath 344.96 347.02 moveto
+354 341.5 lineto
+343.49 340.18 lineto
+closepath fill
+1 setlinewidth
+solid
+0 0 0 edgecolor
+newpath 344.96 347.02 moveto
+354 341.5 lineto
+343.49 340.18 lineto
+closepath stroke
+grestore
+% iommu_group
+gsave
+1 setlinewidth
+0 0 0 nodecolor
+newpath 365.5 371.5 moveto
+365.5 455.5 lineto
+488.5 455.5 lineto
+488.5 371.5 lineto
+closepath stroke
+0 0 0 nodecolor
+12 /monaco set_font
+373.5 441.9 moveto 8 ( ) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 389.5 434.5 moveto
+389.5 455.5 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+397.5 441.9 moveto 83 (iommu_group) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 365.5 434.5 moveto
+488.5 434.5 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+419 420.9 moveto 16 (id) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 365.5 413.5 moveto
+488.5 413.5 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+381.5 399.9 moveto 91 (iommu_domain) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 365.5 392.5 moveto
+488.5 392.5 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+389 378.9 moveto 76 (iommu_data) alignedtext
+grestore
+% vfio_group->iommu_group
+gsave
+1 setlinewidth
+0 0 0 edgecolor
+newpath 303.5 403.5 moveto
+332.4 403.5 331.91 436.23 353.92 443.9 curveto
+stroke
+0 0 0 edgecolor
+newpath 353.58 447.39 moveto
+364 445.5 lineto
+354.67 440.48 lineto
+closepath fill
+1 setlinewidth
+solid
+0 0 0 edgecolor
+newpath 353.58 447.39 moveto
+364 445.5 lineto
+354.67 440.48 lineto
+closepath stroke
+grestore
+% vfio_iommu_driver
+gsave
+1 setlinewidth
+0 0 0 nodecolor
+newpath 536 200 moveto
+536 263 lineto
+710 263 lineto
+710 200 lineto
+closepath stroke
+0 0 0 nodecolor
+12 /monaco set_font
+545.5 249.4 moveto 8 ( ) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 563 242 moveto
+563 263 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+572.5 249.4 moveto 128 (vfio_iommu_driver) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 536 242 moveto
+710 242 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+589 228.4 moveto 68 (vfio_next) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 536 221 moveto
+710 221 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+544 207.4 moveto 158 (vfio_iommu_driver_ops) alignedtext
+grestore
+% vfio_container->vfio_iommu_driver
+gsave
+1 setlinewidth
+0 0 0 edgecolor
+newpath 500 320.5 moveto
+529.92 320.5 508.86 268.44 526.04 255.42 curveto
+stroke
+0 0 0 edgecolor
+newpath 527.39 258.67 moveto
+536 252.5 lineto
+525.42 251.96 lineto
+closepath fill
+1 setlinewidth
+solid
+0 0 0 edgecolor
+newpath 527.39 258.67 moveto
+536 252.5 lineto
+525.42 251.96 lineto
+closepath stroke
+grestore
+% vfio_iommu
+gsave
+1 setlinewidth
+0 0 0 nodecolor
+newpath 565 307.5 moveto
+565 391.5 lineto
+681 391.5 lineto
+681 307.5 lineto
+closepath stroke
+0 0 0 nodecolor
+12 /monaco set_font
+573 377.9 moveto 8 ( ) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 589 370.5 moveto
+589 391.5 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+597 377.9 moveto 76 (vfio_iommu) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 565 370.5 moveto
+681 370.5 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+581.5 356.9 moveto 83 (domain_list) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 565 349.5 moveto
+681 349.5 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+592.5 335.9 moveto 61 (dma_list) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 565 328.5 moveto
+681 328.5 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+592.5 314.9 moveto 61 (notifier) alignedtext
+grestore
+% vfio_container->vfio_iommu
+gsave
+1 setlinewidth
+0 0 0 edgecolor
+newpath 500 299.5 moveto
+542.44 299.5 521.94 368.6 554.05 379.94 curveto
+stroke
+0 0 0 edgecolor
+newpath 553.58 383.4 moveto
+564 381.5 lineto
+554.67 376.49 lineto
+closepath fill
+1 setlinewidth
+solid
+0 0 0 edgecolor
+newpath 553.58 383.4 moveto
+564 381.5 lineto
+554.67 376.49 lineto
+closepath stroke
+grestore
+% vfio_device
+gsave
+1 setlinewidth
+0 0 0 nodecolor
+newpath 0 475.5 moveto
+0 559.5 lineto
+129 559.5 lineto
+129 475.5 lineto
+closepath stroke
+0 0 0 nodecolor
+12 /monaco set_font
+9.5 545.9 moveto 8 ( ) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 27 538.5 moveto
+27 559.5 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+36.5 545.9 moveto 83 (vfio_device) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 0 538.5 moveto
+129 538.5 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+8 524.9 moveto 113 (vfio_device_ops) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 0 517.5 moveto
+129 517.5 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+26.5 503.9 moveto 76 (vfio_group) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 0 496.5 moveto
+129 496.5 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+23 482.9 moveto 83 (device_data) alignedtext
+grestore
+% vfio_device->vfio_group
+gsave
+1 setlinewidth
+0 0 0 edgecolor
+newpath 129 506.5 moveto
+167.79 506.5 142.6 439.15 169.39 426.53 curveto
+stroke
+0 0 0 edgecolor
+newpath 170.38 429.9 moveto
+179.5 424.5 lineto
+169.01 423.03 lineto
+closepath fill
+1 setlinewidth
+solid
+0 0 0 edgecolor
+newpath 170.38 429.9 moveto
+179.5 424.5 lineto
+169.01 423.03 lineto
+closepath stroke
+grestore
+% vfio_device_ops
+gsave
+1 setlinewidth
+0 0 0 nodecolor
+newpath 165 453.5 moveto
+165 621.5 lineto
+318 621.5 lineto
+318 453.5 lineto
+closepath stroke
+0 0 0 nodecolor
+12 /monaco set_font
+173 607.9 moveto 8 ( ) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 189 600.5 moveto
+189 621.5 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+197 607.9 moveto 113 (vfio_device_ops) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 165 600.5 moveto
+318 600.5 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+226 586.9 moveto 31 (open) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 165 579.5 moveto
+318 579.5 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+215 565.9 moveto 53 (release) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 165 558.5 moveto
+318 558.5 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+226 544.9 moveto 31 (read) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 165 537.5 moveto
+318 537.5 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+222.5 523.9 moveto 38 (write) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 165 516.5 moveto
+318 516.5 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+222.5 502.9 moveto 38 (ioctl) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 165 495.5 moveto
+318 495.5 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+226 481.9 moveto 31 (mmap) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 165 474.5 moveto
+318 474.5 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+215 460.9 moveto 53 (request) alignedtext
+grestore
+% vfio_device->vfio_device_ops
+gsave
+1 setlinewidth
+0 0 0 edgecolor
+newpath 129 528.5 moveto
+165.13 528.5 132.94 595.5 155.19 609.11 curveto
+stroke
+0 0 0 edgecolor
+newpath 154.46 612.53 moveto
+165 611.5 lineto
+156.12 605.73 lineto
+closepath fill
+1 setlinewidth
+solid
+0 0 0 edgecolor
+newpath 154.46 612.53 moveto
+165 611.5 lineto
+156.12 605.73 lineto
+closepath stroke
+grestore
+% vfio_iommu_driver->vfio_iommu_driver
+gsave
+1 setlinewidth
+0 0 0 edgecolor
+newpath 535.93 225.71 moveto
+485.28 225.33 438 229.93 438 242 curveto
+438 258.4 484.19 261.01 526.04 256.07 curveto
+stroke
+0 0 0 edgecolor
+newpath 526.54 259.54 moveto
+535.99 254.74 lineto
+525.62 252.6 lineto
+closepath fill
+1 setlinewidth
+solid
+0 0 0 edgecolor
+newpath 526.54 259.54 moveto
+535.99 254.74 lineto
+525.62 252.6 lineto
+closepath stroke
+grestore
+% vfio_iommu_driver_ops
+gsave
+1 setlinewidth
+0 0 0 nodecolor
+newpath 746 .5 moveto
+746 210.5 lineto
+980 210.5 lineto
+980 .5 lineto
+closepath stroke
+0 0 0 nodecolor
+12 /monaco set_font
+763 196.9 moveto 8 ( ) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 788 189.5 moveto
+788 210.5 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+805 196.9 moveto 158 (vfio_iommu_driver_ops) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 746 189.5 moveto
+980 189.5 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+847.5 175.9 moveto 31 (open) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 746 168.5 moveto
+980 168.5 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+836.5 154.9 moveto 53 (release) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 746 147.5 moveto
+980 147.5 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+847.5 133.9 moveto 31 (read) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 746 126.5 moveto
+980 126.5 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+844 112.9 moveto 38 (write) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 746 105.5 moveto
+980 105.5 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+844 91.9 moveto 38 (ioctl) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 746 84.5 moveto
+980 84.5 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+847.5 70.9 moveto 31 (mmap) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 746 63.5 moveto
+980 63.5 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+791.5 49.9 moveto 143 (attach/detach_group) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 746 42.5 moveto
+980 42.5 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+806.5 28.9 moveto 113 (pin/unpin_pages) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 746 21.5 moveto
+980 21.5 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+754 7.9 moveto 218 (regiester/unregister_notifier) alignedtext
+grestore
+% vfio_iommu_driver->vfio_iommu_driver_ops
+gsave
+1 setlinewidth
+0 0 0 edgecolor
+newpath 710 210.5 moveto
+722.58 210.5 727.23 204.76 735.97 201.98 curveto
+stroke
+0 0 0 edgecolor
+newpath 736.62 205.42 moveto
+746 200.5 lineto
+735.6 198.49 lineto
+closepath fill
+1 setlinewidth
+solid
+0 0 0 edgecolor
+newpath 736.62 205.42 moveto
+746 200.5 lineto
+735.6 198.49 lineto
+closepath stroke
+grestore
+% iommu_group->vfio_iommu
+gsave
+1 setlinewidth
+0 0 0 edgecolor
+newpath 490 381.5 moveto
+519.16 381.5 528.93 381.5 553.7 381.5 curveto
+stroke
+0 0 0 edgecolor
+newpath 554 385 moveto
+564 381.5 lineto
+554 378 lineto
+closepath fill
+1 setlinewidth
+solid
+0 0 0 edgecolor
+newpath 554 385 moveto
+564 381.5 lineto
+554 378 lineto
+closepath stroke
+grestore
+% vfio_domain
+gsave
+1 setlinewidth
+0 0 0 nodecolor
+newpath 801.5 375.5 moveto
+801.5 459.5 lineto
+924.5 459.5 lineto
+924.5 375.5 lineto
+closepath stroke
+0 0 0 nodecolor
+12 /monaco set_font
+809.5 445.9 moveto 8 ( ) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 825.5 438.5 moveto
+825.5 459.5 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+833.5 445.9 moveto 83 (vfio_domain) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 801.5 438.5 moveto
+924.5 438.5 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+847.5 424.9 moveto 31 (next) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 801.5 417.5 moveto
+924.5 417.5 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+817.5 403.9 moveto 91 (iommu_domain) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 801.5 396.5 moveto
+924.5 396.5 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+825 382.9 moveto 76 (group_list) alignedtext
+grestore
+% vfio_iommu->vfio_domain
+gsave
+1 setlinewidth
+dashed
+0 0 0 edgecolor
+newpath 682 360.5 moveto
+744.1 360.5 735.54 440.03 789.91 448.73 curveto
+stroke
+0 0 0 edgecolor
+newpath 789.76 452.23 moveto
+800 449.5 lineto
+790.29 445.25 lineto
+closepath fill
+1 setlinewidth
+solid
+0 0 0 edgecolor
+newpath 789.76 452.23 moveto
+800 449.5 lineto
+790.29 445.25 lineto
+closepath stroke
+grestore
+% vfio_dma
+gsave
+1 setlinewidth
+0 0 0 nodecolor
+newpath 812.5 244 moveto
+812.5 349 lineto
+913.5 349 lineto
+913.5 244 lineto
+closepath stroke
+0 0 0 nodecolor
+12 /monaco set_font
+820.5 335.4 moveto 8 ( ) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 836.5 328 moveto
+836.5 349 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+844.5 335.4 moveto 61 (vfio_dma) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 812.5 328 moveto
+913.5 328 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+847.5 314.4 moveto 31 (iova) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 812.5 307 moveto
+913.5 307 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+844 293.4 moveto 38 (vaddr) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 812.5 286 moveto
+913.5 286 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+847.5 272.4 moveto 31 (size) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 812.5 265 moveto
+913.5 265 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+821.5 251.4 moveto 83 (task_struct) alignedtext
+grestore
+% vfio_iommu->vfio_dma
+gsave
+1 setlinewidth
+0 0 0 edgecolor
+newpath 682 338.5 moveto
+735.75 338.5 751.71 338.5 800.73 338.5 curveto
+stroke
+0 0 0 edgecolor
+newpath 801 342 moveto
+811 338.5 lineto
+801 335 lineto
+closepath fill
+1 setlinewidth
+solid
+0 0 0 edgecolor
+newpath 801 342 moveto
+811 338.5 lineto
+801 335 lineto
+closepath stroke
+grestore
+% iommu_domain
+gsave
+1 setlinewidth
+0 0 0 nodecolor
+newpath 1038.5 316 moveto
+1038.5 421 lineto
+1212.5 421 lineto
+1212.5 316 lineto
+closepath stroke
+0 0 0 nodecolor
+12 /monaco set_font
+1057 407.4 moveto 8 ( ) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 1083.5 400 moveto
+1083.5 421 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+1102.5 407.4 moveto 91 (iommu_domain) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 1038.5 400 moveto
+1212.5 400 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+1110 386.4 moveto 31 (type) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 1038.5 379 moveto
+1212.5 379 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+1091.5 365.4 moveto 68 (iommu_ops) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 1038.5 358 moveto
+1212.5 358 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+1046.5 344.4 moveto 158 (iommu_fault_handler_t) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 1038.5 337 moveto
+1212.5 337 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+1046.5 323.4 moveto 158 (iommu_domain_geometry) alignedtext
+grestore
+% vfio_domain->iommu_domain
+gsave
+1 setlinewidth
+0 0 0 edgecolor
+newpath 926 406.5 moveto
+972 406.5 985.94 409.94 1027.31 410.44 curveto
+stroke
+0 0 0 edgecolor
+newpath 1027.48 413.94 moveto
+1037.5 410.5 lineto
+1027.52 406.94 lineto
+closepath fill
+1 setlinewidth
+solid
+0 0 0 edgecolor
+newpath 1027.48 413.94 moveto
+1037.5 410.5 lineto
+1027.52 406.94 lineto
+closepath stroke
+grestore
+% iommu_ops
+gsave
+1 setlinewidth
+0 0 0 nodecolor
+newpath 1271 190.5 moveto
+1271 316.5 lineto
+1415 316.5 lineto
+1415 190.5 lineto
+closepath stroke
+0 0 0 nodecolor
+12 /monaco set_font
+1288 302.9 moveto 8 ( ) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 1313 295.5 moveto
+1313 316.5 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+1330 302.9 moveto 68 (iommu_ops) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 1271 295.5 moveto
+1415 295.5 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+1279 281.9 moveto 128 (domain_alloc/free) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 1271 274.5 moveto
+1415 274.5 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+1279 260.9 moveto 128 (attach/detach_dev) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 1271 253.5 moveto
+1415 253.5 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+1309 239.9 moveto 68 (map/unmap) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 1271 232.5 moveto
+1415 232.5 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+1320 218.9 moveto 46 (map_sg) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 1271 211.5 moveto
+1415 211.5 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+1279 197.9 moveto 128 (add/remove_device) alignedtext
+grestore
+% iommu_domain->iommu_ops
+gsave
+1 setlinewidth
+0 0 0 edgecolor
+newpath 1213.5 368.5 moveto
+1247.26 368.5 1236.44 318.45 1261.14 308.29 curveto
+stroke
+0 0 0 edgecolor
+newpath 1261.79 311.73 moveto
+1271 306.5 lineto
+1260.54 304.84 lineto
+closepath fill
+1 setlinewidth
+solid
+0 0 0 edgecolor
+newpath 1261.79 311.73 moveto
+1271 306.5 lineto
+1260.54 304.84 lineto
+closepath stroke
+grestore
+% iommu_device
+gsave
+1 setlinewidth
+0 0 0 nodecolor
+newpath 1060 234 moveto
+1060 297 lineto
+1191 297 lineto
+1191 234 lineto
+closepath stroke
+0 0 0 nodecolor
+12 /monaco set_font
+1068 283.4 moveto 8 ( ) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 1084 276 moveto
+1084 297 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+1092 283.4 moveto 91 (iommu_device) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 1060 276 moveto
+1191 276 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+1102.5 262.4 moveto 46 (device) alignedtext
+1 setlinewidth
+0 0 0 nodecolor
+newpath 1060 255 moveto
+1191 255 lineto
+stroke
+0 0 0 nodecolor
+12 /monaco set_font
+1091.5 241.4 moveto 68 (iommu_ops) alignedtext
+grestore
+% iommu_device->iommu_ops
+gsave
+1 setlinewidth
+0 0 0 edgecolor
+newpath 1192.5 244.5 moveto
+1233.14 244.5 1227.93 296.3 1260.68 305.21 curveto
+stroke
+0 0 0 edgecolor
+newpath 1260.64 308.73 moveto
+1271 306.5 lineto
+1261.51 301.78 lineto
+closepath fill
+1 setlinewidth
+solid
+0 0 0 edgecolor
+newpath 1260.64 308.73 moveto
+1271 306.5 lineto
+1261.51 301.78 lineto
+closepath stroke
+grestore
+% vfio_iommu_driver_ops_type1
+gsave
+1 setlinewidth
+0 0 0 nodecolor
+newpath 1016 178.5 moveto
+1016 214.5 lineto
+1235 214.5 lineto
+1235 178.5 lineto
+closepath stroke
+0 0 0 nodecolor
+12 /monaco set_font
+1024 193.4 moveto 203 (vfio_iommu_driver_ops_type1) alignedtext
+grestore
+% vfio_iommu_driver_ops->vfio_iommu_driver_ops_type1
+gsave
+1 setlinewidth
+0 0 0 edgecolor
+newpath 980 200.5 moveto
+988.35 200.5 996.98 200.43 1005.66 200.32 curveto
+stroke
+0 0 0 edgecolor
+newpath 1005.93 203.81 moveto
+1015.87 200.16 lineto
+1005.82 196.81 lineto
+closepath fill
+1 setlinewidth
+solid
+0 0 0 edgecolor
+newpath 1005.93 203.81 moveto
+1015.87 200.16 lineto
+1005.82 196.81 lineto
+closepath stroke
+grestore
+endpage
+showpage
+grestore
+%%PageTrailer
+%%EndPage: 1
+%%Trailer
+%%Pages: 1
+%%BoundingBox: 36 36 1459 666
+end
+restore
+%%EOF
