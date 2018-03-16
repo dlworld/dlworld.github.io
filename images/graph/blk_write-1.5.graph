@@ -1,0 +1,29 @@
+digraph blk_rw {
+    node [ fontname=monaco, fontsize=12, shape=oval ];
+    rankdir=TD;
+    "virtio-blk::virtio_submit_multiwrite" -> "bdrv_aio_multiwrite";
+    bdrv_aio_multiwrite -> multiwrite_merge;
+    bdrv_aio_multiwrite -> bdrv_co_aio_rw_vector;
+    bdrv_co_aio_rw_vector -> bdrv_co_do_rw;
+    bdrv_co_do_rw -> bdrv_co_do_readv;
+    bdrv_co_do_rw -> bdrv_co_do_writev;
+    bdrv_co_do_rw -> qemu_bh_schedule;
+    bdrv_co_do_writev -> bdrv_aligned_pwritev;
+    bdrv_aligned_pwritev -> before_write_notifiers;
+    before_write_notifiers -> backup_do_cow [style="dashed"];
+    bdrv_aligned_pwritev -> drv::bdrv_co_writev;
+    bdrv_aligned_pwritev -> bdrv_co_flush;
+    bdrv_aligned_pwritev -> bdrv_set_dirty;
+    "drv::bdrv_co_pwritev" -> "qcow2::qcow2_co_pwritev";
+    "drv::bdrv_co_pwritev" -> "raw-format::raw_co_pwritev";
+    "drv::bdrv_co_pwritev" -> "file-posix::raw_co_pwritev" [color=red];
+    "qcow2::qcow2_co_pwritev" -> "io::bdrv_co_pwritev" [style="dashed"];
+    "raw-format::raw_co_pwritev" -> "io::bdrv_co_pwritev" [style="dashed"];
+    "file-posix::raw_co_pwritev" -> raw_co_prw;
+    raw_co_prw -> laio_co_submit [label="native aio"];
+    raw_co_prw -> paio_submit_co [label="threads"];
+    paio_submit_co -> thread_pool_submit_co;
+    laio_co_submit -> io_submit;
+    bdrv_set_dirty [shape=box, color=red];
+    before_write_notifiers [shape=box, color=red];
+}

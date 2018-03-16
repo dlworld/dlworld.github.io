@@ -1,0 +1,16 @@
+digraph qcow_load_bitmaps {
+    node [ fontname=monaco, fontsize=12, shape=oval ];
+    rankdir=LR;
+    qcow2_do_open -> qcow2_load_autoloading_dirty_bitmaps;
+    qcow2_load_autoloading_dirty_bitmaps -> bitmap_list_load;
+    qcow2_load_autoloading_dirty_bitmaps -> load_bitmap;
+    load_bitmap -> bitmap_table_load;
+    load_bitmap -> bdrv_create_dirty_bitmap;
+    load_bitmap -> load_bitmap_data;
+    qcow2_load_autoloading_dirty_bitmaps -> set IN_USE flag;
+    qcow2_load_autoloading_dirty_bitmaps -> bdrv_dirty_bitmap_set_persistance;
+    qcow2_load_autoloading_dirty_bitmaps -> bdrv_dirty_bitmap_set_autoload;
+    qcow2_load_autoloading_dirty_bitmaps -> update_ext_header_and_dir_in_place;
+    update_ext_header_and_dir_in_place -> update_header_sync;
+    update_ext_header_and_dir_in_place -> bitmap_list_store;
+}

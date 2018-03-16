@@ -1,0 +1,16 @@
+digraph  refcount{
+    node [ fontname=monaco, fontsize=12, shape=oval ];
+    rankdir=TD;
+    "bdrv_img_create" -> "bdrv_create";
+    "qcow2_open" -> "qcow2_check_refcounts";
+    "qcow2_check_refcounts" -> "calculate_refcounts";
+    "qcow2_check_refcounts" -> "compare_refcounts";
+    "compare_refcounts" -> "get_refcount",
+    "do_alloc_cluster_offset" -> "qcow2_alloc_clusters";
+    "qcow2_alloc_clusters" -> "alloc_clusters_noref";
+    "alloc_clusters_noref" -> "get_refcount";
+    "get_refcount" -> "qcow2_cache_get";
+    "qcow2_alloc_clusters" -> "update_refcount";
+    "do_alloc_cluster_offset" -> "qcow2_alloc_clusters_at";
+    bdrv_create [shape=box, color=red];
+}

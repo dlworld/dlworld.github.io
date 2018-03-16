@@ -1,0 +1,14 @@
+digraph bitmap {
+    node [ fontname=monaco, fontsize=12, shape=record ];
+    rankdir=LR;
+    Qcow2BitmapDirEntry [label="<f0> Qcow2BitmapDirEntry | name | <f1> bitmap_table_offset | bitmap_table_size"];
+    Qcow2BitmapTable [label="<f0> Qcow2BitmapTable | <f1> offset | size"];
+    Qcow2Bitmap [label="{<f0> | Qcow2Bitmap | <f1> Qcow2BitmapTable | <f2> BdrvDirtyBitmap | name"];
+    BdrvDirtyBitmap [label="<f0> | BdrvDirtyBitmap | name | bitmap | meta | <f1> list"];
+    HBitmap [label="<f0> HBitmap | size | count | granularity | meta | levels | siezes"];
+    BdrvDirtyBitmapIter [label="{<f0> BdrvDirtyBitmapIter| <f1> HBitmapIter | <f2> BdrvDirtyBitmap }"];
+    HBitmapIter [label="{<f0> HBitmapIter | <f1> HBitmap | granularity | pos | 'cur[HBITMAP_LEVELS]'}"];
+    Qcow2BitmapDirEntry:f1 -> Qcow2BitmapTable:f0;
+    Qcow2BitmapTable:f1 -> Qcow2Bitmap:f0;
+    Qcow2Bitmap:f1 -> HBitmap:f0;
+}

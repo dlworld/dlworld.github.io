@@ -1,0 +1,16 @@
+digraph backup_create {
+    node [ fontname=monaco, fontsize=12, shape=oval ];
+    rankdir=LR;
+    backup_job_create -> bdrv_dirty_bitmap_create_successor;
+    backup_job_create -> backup_job_driver;
+    backup_job_driver -> backup_run;
+    backup_job_driver -> backup_commit;
+    backup_job_driver -> backup_abort;
+    backup_job_driver -> backup_clean;
+    backup_job_driver -> backup_drain;
+    backup_run -> backup_run_incremental [label="incremental"];
+    backup_run -> backup_do_cow [label="full"];
+    backup_commit -> bdrv_dirty_bitmap_abdicate;
+    backup_abort -> bdrv_reclaim_dirty_bitmap;
+    backup_job_driver [shape=box, color=red];
+}

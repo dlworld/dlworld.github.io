@@ -1,0 +1,22 @@
+digraph qemu_block {
+    node [ fontname=monaco, fontsize=12, shape=oval ];
+    rankdir=TD;
+    mirror_start_job -> mirror_run;
+    mirror_run -> mirror_dirty_init;
+    mirror_dirty_init -> bdrv_is_allocated_above;
+    mirror_dirty_init -> bdrv_set_dirty_bitmap;
+    mirror_run -> bdrv_dirty_iter_new;
+    mirror_run -> bdrv_get_dirty_count;
+    mirror_run -> mirror_iteration [label='cnt!=0'];
+    mirror_run -> block_job_sleep_ns;
+    mirror_iteration -> mirror_wait_for_io;
+    mirror_iteration -> mirror_do_read;
+    mirror_do_read -> mirror_wait_for_io;
+    mirror_do_read -> bdrv_aio_readv;
+    bdrv_aio_readv -> mirror_read_complete;
+    mirror_read_complete -> bdrv_aio_writev;
+    bdrv_aio_writev -> mirror_write_complete;
+    mirror_write_complete -> mirror_iteration_done;
+    before_write_notifiers -> backup_do_cow [style="dashed"];
+    bdrv_set_dirty [shape=box, color=red];
+}

@@ -9,17 +9,21 @@ digraph blk_rw {
     blk_aio_write_entry -> blk_aio_complete;
     blk_co_pwritev -> "io::bdrv_co_pwritev";
     "io::bdrv_co_pwritev" -> bdrv_aligned_pwritev;
+    bdrv_aligned_pwritev -> before_write_notifiers;
+    before_write_notifiers -> backup_do_cow [style="dashed"];
     bdrv_aligned_pwritev -> bdrv_driver_pwritev;
     bdrv_aligned_pwritev -> bdrv_set_dirty;
     bdrv_driver_pwritev -> "drv::bdrv_co_pwritev";
     "drv::bdrv_co_pwritev" -> "qcow2::qcow2_co_pwritev";
     "drv::bdrv_co_pwritev" -> "raw-format::raw_co_pwritev";
-    "qcow2::qcow2_co_pwritev" -> "block::bdrv_co_pwritev";
-    "block::bdrv_aligned_pwritev" -> "file-posix::raw_co_pwritev";
-    "raw-format::raw_co_pwritev" -> "block::bdrv_co_pwritev";
+    "drv::bdrv_co_pwritev" -> "file-posix::raw_co_pwritev" [color=red];
+    "qcow2::qcow2_co_pwritev" -> "io::bdrv_co_pwritev" [style="dashed"];
+    "raw-format::raw_co_pwritev" -> "io::bdrv_co_pwritev" [style="dashed"];
     "file-posix::raw_co_pwritev" -> raw_co_prw;
-    raw_co_prw -> laio_co_submit [label="Linux AIO"];
-    raw_co_prw -> paio_submit_co;
+    raw_co_prw -> laio_co_submit [label="native aio"];
+    raw_co_prw -> paio_submit_co [label="threads"];
     paio_submit_co -> thread_pool_submit_co;
     laio_co_submit -> io_submit;
+    bdrv_set_dirty [shape=box, color=red];
+    before_write_notifiers [shape=box, color=red];
 }

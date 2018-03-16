@@ -1,0 +1,16 @@
+digraph blk_backup {
+    node [ fontname=monaco, fontsize=12, shape=oval ];
+    rankdir=LR;
+    backup_run -> "bitmap_new(done_bitmap)";
+    backup_run -> backup_before_write_notify [label="write"];
+    backup_before_write_notify -> backup_do_cow;
+    backup_run -> backup_run_incremental [label="incremental"];
+    backup_run -> backup_do_cow [label="full"];
+    backup_run_incremental -> "bdrv_dirty_iter_new(sync_bitmap)";
+    backup_run_incremental -> backup_do_cow;
+    backup_run -> "notifier_with_return_remove(before_write)";
+    backup_do_cow -> blk_co_preadv [label="S2bounce"];
+    backup_do_cow -> blk_co_pwritev [label="bounce2T"];
+    backup_do_cow -> "set_bit(done_bitmap)";
+    backup_do_cow [shape=box, color=red];
+}

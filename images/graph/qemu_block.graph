@@ -1,0 +1,18 @@
+digraph qemu_block {
+    node [ fontname=monaco, fontsize=12, shape=oval ];
+    rankdir=TD;
+    "virtio-blk::submit_requests" -> "bdrv_aligned_pwritev";
+    bdrv_aligned_pwritev -> before_write_notifiers;
+    before_write_notifiers -> backup_do_cow [style="dashed"];
+    bdrv_aligned_pwritev -> "drv::bdrv_co_pwritev";
+    bdrv_aligned_pwritev -> bdrv_set_dirty;
+    "drv::bdrv_co_pwritev" -> "qcow2::qcow2_co_pwritev";
+    "drv::bdrv_co_pwritev" -> "raw-format::raw_co_pwritev";
+    "drv::bdrv_co_pwritev" -> "file-posix::raw_co_pwritev" [color=red];
+    "qcow2::qcow2_co_pwritev" -> "bdrv_aligned_pwritev" [style="dashed"];
+    "raw-format::raw_co_pwritev" -> "bdrv_aligned_pwritev" [style="dashed"];
+    "file-posix::raw_co_pwritev" -> io_submit [label="native aio"];
+    "file-posix::raw_co_pwritev" -> thread_pool_submit_co [label="threads"];
+    bdrv_set_dirty [shape=box, color=red];
+    before_write_notifiers [shape=box, color=red];
+}

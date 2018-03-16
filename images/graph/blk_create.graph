@@ -1,0 +1,27 @@
+digraph blk_create {
+    node [ fontname=monaco, fontsize=12, shape=oval ];
+    rankdir=TD;
+    "bdrv_img_create" -> "bdrv_create";
+    "bdrv_create" -> "qcow2_create";
+    "qcow2_create" -> "qcow2_create2";
+    "qcow2_create2" -> "bdrv_create_file";
+    "bdrv_create_file" -> "bdrv_find_protocol";
+    "bdrv_create_file" -> "bdrv_create";
+    "bdrv_create" -> "raw_create";
+    "qcow2_create2" -> "bdrv_file_open";
+    "bdrv_file_open" -> "raw_open";
+    "bdrv_file_open" -> "refresh_total_sectors";
+    "bdrv_file_open" -> "bdrv_refresh_limits";
+    "bdrv_open_common" -> "qcow2_open";
+    "qcow2_create2" -> "write header";
+    "qcow2_create2" -> "write refcount_table";
+    "qcow2_create2" -> "bdrv_open";
+    "qcow2_open" -> "read_header";
+    "qcow2_open" -> "qcow2_refcount_init";
+    "qcow2_open" -> "qcow2_read_extensions";
+    "qcow2_create2" -> "qcow2_alloc_clusters" [label="header&reftable"];
+    "qcow2_alloc_clusters" -> "qcow2_check_refcounts";
+    "qcow2_check_refcounts" -> "compare_refcounts";
+    "qcow2_create2" -> "bdrv_truncate";
+    bdrv_create [shape=box, color=red];
+}

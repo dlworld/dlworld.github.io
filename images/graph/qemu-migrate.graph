@@ -1,0 +1,57 @@
+    rankdir=LR;
+    qmp_migrate -> migrate_init;
+    migrate_init -> enable capabilities;
+    qmp_migrate -> tcp_start_outgoing_migration;
+    migration_fd_process_incoming -> migration_incoming_setup;
+    migration_fd_process_incoming -> migration_incoming_process;
+    migration_incoming_process -> migration_incoming_get_current;
+    process_incoming_migration_co -> migration_incoming_get_current;
+    migration_caps_check -> migration_incoming_get_current;
+    migration_incoming_get_current -> init_dirty_bitmap_incoming_migration [label="once"];
+    migration_ioc_process_incoming -> migration_fd_process_incoming;
+    migration_fd_process_incoming -> migration_incoming_setup;
+    migration_fd_process_incoming -> migration_incoming_process;
+    migration_incoming_process -> process_incoming_migration_co;
+    process_incoming_migration_co -> process_incoming_migration_bh;
+    process_incoming_migration_bh -> dirty_bitmap_mig_before_vm_start;
+
+    migration_thread -> qemu_savevm_state_begin;
+    migration_thread -> qemu_savevm_state_pending;
+    migration_thread -> qemu_savevm_state_iterate;
+    migration_thread -> qemu_savevm_state_complete;
+
+    qemu_savevm_state -> qemu_savevm_state_begin;
+    qemu_savevm_state -> qemu_savevm_state_iterate;
+    qemu_savevm_state -> qemu_savevm_state_complete;
+
+    qemu_savevm_state_begin -> dirty_bitmap_save_setup;
+    dirty_bitmap_save_setup -> init_dirty_bitmap_migration;
+    init_dirty_bitmap_migration -> bdrv_dirty_bitmap_frozen;
+    dirty_bitmap_save_setup -> send_bitmap_start;
+
+    qemu_savevm_state_iterate -> dirty_bitmap_save_iterate;
+
+    dirty_bitmap_save_complete -> bulk_phase;
+    dirty_bitmap_save_complete -> send_bitmap_complete;
+    dirty_bitmap_save_complete -> qemu_put_bitmap_flags;
+    dirty_bitmap_save_complete -> dirty_bitmap_mig_cleanup;
+    bulk_phase -> send_bitmap_bits;
+    send_bitmap_bits -> send_bitmap_header;
+    send_bitmap_bits -> qemu_put_buffer;
+
+    process_incoming_migration_co -> qemu_loadvm_state;
+    qemu_loadvm_state -> dirty_bitmap_load;
+    dirty_bitmap_load -> dirty_bitmap_load_header;
+    dirty_bitmap_load -> dirty_bitmap_load_start;
+    dirty_bitmap_load -> dirty_bitmap_load_bits;
+    dirty_bitmap_load -> dirty_bitmap_load_complete;
+
+    dirty_bitmap_load_bits -> bdrv_dirty_bitmap_deserialize_part;
+
+    tcp_accept_incoming_migration -> process_incoming_migration;
+    process_incoming_migration -> migrate_decompress_threads_create;
+    process_incoming_migration -> qemu_loadvm_state;
+    process_incoming_migration -> bdrv_invalidate_cache_all;
+    process_incoming_migration -> migrate_decompress_threads_join;
+
+}

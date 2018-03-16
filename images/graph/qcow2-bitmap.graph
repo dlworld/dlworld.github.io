@@ -1,0 +1,23 @@
+digraph qcow2_bitmap {
+    node [ fontname=monaco, fontsize=12, shape=record ];
+    rankdir=TD;
+    bitmap_ext [label="{<f0> header bitmap_ext | <f1> bitmap_directory_offset}"];
+    bitmap_dir [label="{<f0> bitmap_directory | {{<f1> bitmap_table_offset | granularity | name} | {<f2> bitmap_table_offset | granularity | name} | ... }}"];
+    bitmap_table [label="{<f0> BitmapTable | {  Bit  | 0 |    1---8     |      9-------55       |  56---63 } \
+      | {<f1> Entry0 | read |  Reserved    |  <f12>   cluster offset    | Reserved } | \
+     {<f2> Entry1 | read |  Reserved    |  <f22>   cluster offset    | Reserved } | \
+     {<f3> ... }\
+}"];
+    bitmap1 [label="{<f0> bitmap clusters1 | { {Sector 0 | { <f1> Bit 0 | ... | 4095 }}| 1 | <f2> ... | <f3> 127}} "];
+    bitmap2 [label="{<f0> bitmap clusters2 | { {Sector 0 | { <f1> Bit 0 | ... | 4095 }}| 1 | ... | <f3> 127} }"];
+    data1 [label="{<f0> data clusters | granularity 0 | {sector 0 | ... | 127 } }"];
+    datax [label="{<f0> data clusters |  ... } "];
+    data2 [label="{<f0> data clusters | granularity 0 | {sector 0 | ... | 127 } }"];
+    bitmap_ext:f1 -> bitmap_dir:f0;
+    bitmap_dir:f1 -> bitmap_table:f0;
+    bitmap_table:f12 -> bitmap1:f0;
+    bitmap_table:f22 -> bitmap2:f0;
+    bitmap1:f1 -> data1:f0;
+    bitmap1:f2 -> datax:f0;
+    bitmap2:f3 -> data2:f0;
+}

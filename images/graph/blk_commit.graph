@@ -1,0 +1,9 @@
+digraph blk_commit {
+    node [ fontname=monaco, fontsize=12, shape=oval ];
+    rankdir=TD;
+    img_commit -> bdrv_new_open;
+    img_commit -> bdrv_commit;
+    bdrv_commit -> 'bdrv_read(bs)';
+    bdrv_commit -> 'bdrv_write(bs->backing_hd)';
+    bdrv_commit -> 'bdrv_make_empty';
+}

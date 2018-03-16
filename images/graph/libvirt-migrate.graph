@@ -1,0 +1,29 @@
+digraph blk_rw {
+    node [ fontname=monaco, fontsize=12, shape=oval ];
+    rankdir=TD;
+    cmdMigrate -> doMigrate;
+    doMigrate -> virDomainMigrateToURI3 [label="p2p"];
+    doMigrate -> virDomainMigrate3;
+    virDomainMigrateToURI3 -> virDomainMigratePeer2PeerParams;
+    virDomainMigrateToURI3 -> virDomainMigratePeer2Peer;
+    virDomainMigratePeer2PeerParams -> virDomainMigratePeer2PeerFull;
+    virDomainMigratePeer2PeerFull -> domainMigratePerform3Params;
+
+    domainMigratePerform3Params -> qemuDomainMigratePerform3Params;
+    qemuDomainMigratePerform3Params -> qemuMigrationPerform;
+    qemuMigrationPerform -> qemuMigrationPerformJob [label="tunnel|p2p"];
+    qemuMigrationPerform -> qemuMigrationPerformPhase;
+    qemuMigrationPerformJob -> doPeer2PeerMigrate [label="tunnel|p2p"];
+    doPeer2PeerMigrate -> doPeer2PeerMigrate3 [label="v3proto"];
+    doPeer2PeerMigrate3 -> doNativeMigrate;
+    doPeer2PeerMigrate3 -> doTunnelMigrate;
+
+    qemuMigrationPerformPhase -> doNativeMigrate;
+    doTunnelMigrate -> qemuMigrationRun;
+    doNativeMigrate -> qemuMigrationRun;
+    qemuMigrationRun -> qemuMigrationDriveMirror;
+    qemuMigrationDriveMirror -> qemuMonitorDriveMirror;
+    qemuMonitorDriveMirror -> qemuMonitorJSONDriveMirror;
+    qemuMigrationRun -> qemuMonitorMigrateToHost;
+    bdrv_set_dirty [shape=box, color=red];
+}

@@ -1,0 +1,21 @@
+digraph qcow_store_bitmaps {
+    node [ fontname=monaco, fontsize=12, shape=oval ];
+    rankdir=LR;
+    bdrv_close -> qcow2_inactivate;
+    bdrv_inactivate -> qcow2_inactivate;
+    qcow2_inactivate -> qcow2_store_persistent_dirty_bitmaps;
+    qcow2_reopen_bitmaps_ro -> qcow2_store_persistent_dirty_bitmaps;
+    qcow2_store_persistent_dirty_bitmaps -> find_bitmap_by_name;
+    qcow2_store_persistent_dirty_bitmaps -> clear IN_USE flag;
+    qcow2_store_persistent_dirty_bitmaps -> store_bitmap;
+    qcow2_store_persistent_dirty_bitmaps -> update_ext_header_and_dir;
+    store_bitmap -> store_bitmap_data;
+    store_bitmap_data -> qcow2_alloc_clusters;
+    store_bitmap_data -> bdrv_pwrite [label="bitmap"];
+    store_bitmap -> qcow2_alloc_clusters;
+    store_bitmap -> bdrv_pwrite [label="bitmap table"];
+    update_ext_header_and_dir -> bitmap_list_store;
+    update_ext_header_and_dir -> update_header_sync;
+    qcow2_store_persistent_dirty_bitmaps [shape=box, color=red];
+    qcow2_reopen_bitmaps_ro [color=red];
+}

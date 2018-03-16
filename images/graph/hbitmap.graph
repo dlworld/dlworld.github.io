@@ -1,0 +1,32 @@
+digraph hbitmap {
+    node [ fontname=monaco, fontsize=12, shape=record ];
+    rankdir=TD;
+    level3 [label="{<f0> level3:1 | {<f1> bit 0 | <f2> 1 | '...' | <f3> 63 }}"];
+    level4 [label="{<f0> level4:1 | {<f1> bit 0 | <f2> 1 | <f3> '...' | <f4> 39 | '...' | <f5> 63 }}"];
+    level51 [label="{<f0> level5:1 | {<f1> bit 0 | <f2> 1 | 2 | '...' | <f3> 63 }}"];
+    level52 [label="{<f0> level5:2 | {<f1> bit 0 | <f2> 1 | 2 | <f4> '...' | <f3> 63 }}"];
+    level5x [label="{<f0> level5:x | <f1> '...' }"];
+    level540 [label="{<f0> level5:40 | {<f1> bit 0 | <f2> 1 | 2 | '...' | <f3> 63 }}"];
+    level61 [label="{<f0> level6:1 | {<f1> bit 0 | <f2> 1 | 2 | '...' | <f3> 63 }}"];
+    level62 [label="{<f0> level6:2 | {<f1> bit 0 | <f2> 1 | 2 | <f4> '...' | <f3> 63 }}"];
+    level6x [label="{<f0> level6:x | <f1> '...' }"];
+    level62560 [label="{<f0> level6:2560 | {<f1> bit 0 | <f2> 1 | 2 | '...' | <f3> 63 }}"];
+    granularity0 [label="{<f0> granularity:1 | {<f1> sector 0 | <f2> 1 | 2 | '...' | <f3> 127}}"];
+    granularity0 [label="{<f0> granularity:1 | {<f1> sector 0 | <f2> 1 | 2 | '...' | <f3> 127}}"];
+    granularity63 [label="{<f0> granularity:63 | {<f1> sector 0 | <f2> 1 | 2 | '...' | <f3> 127}}"];
+    granularityx [label="{<f0> granularity:x | <f1> '...' }"];
+    granularity163840 [label="{<f0> granularity:163840 | {<f1> sector 0 | <f2> 1 | 2 | '...' | <f3> 127}}"];
+    level3:f1 -> level4:f0;
+    level4:f1 -> level51:f0;
+    level4:f2 -> level52:f0;
+    level4:f3 -> level5x:f0;
+    level4:f4 -> level540:f0;
+    level51:f1 -> level61:f0;
+    level51:f2 -> level62:f0;
+    level52:f4 -> level6x:f0;
+    level540:f3 -> level62560:f0;
+    level61:f1 -> granularity0:f0;
+    level61:f3 -> granularity63:f0;
+    level62:f4 -> granularityx:f0;
+    level62560:f3 -> granularity163840:f0;
+}

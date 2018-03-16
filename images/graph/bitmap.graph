@@ -1,0 +1,12 @@
+digraph bitmap {
+    node [ fontname=monaco, fontsize=12, shape=record ];
+    rankdir=LR;
+    BlockDriverState [label="<f0> BlockDriverState | <f1> BlockDriver | <f2> BlockJob | dirty_bitmap_mutex | <f3> dirty_bitmaps | ... "];
+    BdrvDirtyBitmap [label="<f0> BdrvDirtyBitmap | name | size | persistent | <f4> successor | <f1> bitmap | <f2> meta | <f3> list"];
+    BdrvDirtyBitmap1 [label="<f0> BdrvDirtyBitmap | name | size | persistent | <f4> successor | <f1> bitmap | <f2> meta | <f3> list"];
+    HBitmap [label="<f0> HBitmap | size | count | granularity | meta | levels | sizes"];
+    BlockDriverState:f3 -> BdrvDirtyBitmap:f0;
+    BdrvDirtyBitmap:f1 -> HBitmap:f0;
+    BdrvDirtyBitmap:f2 -> HBitmap:f0;
+    BdrvDirtyBitmap:f3 -> BdrvDirtyBitmap1:f0;
+}

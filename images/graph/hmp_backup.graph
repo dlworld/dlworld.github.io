@@ -1,0 +1,12 @@
+digraph hmp_backup {
+    node [ fontname=monaco, fontsize=12, shape=oval ];
+    rankdir=LR;
+    hmp_drive_backup -> qmp_drive_backup;
+    hmp_drive_backup -> hmp_handle_error;
+    qmp_drive_backup -> do_drive_backup;
+    qmp_drive_backup -> block_job_start;
+    do_drive_backup -> bdrv_open;
+    do_drive_backup -> bdrv_set_aio_context;
+    do_drive_backup -> bdrv_find_dirty_bitmap;
+    do_drive_backup -> backup_job_create;
+}
