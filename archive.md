@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 文章归档
+title: Archive
 permalink: /archive/
 #banner_image: sample-banner-image-3.jpg
 ---

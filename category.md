@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 分类列表
+title: Catogary
 #permalink: /archive/
 #banner_image: sample-banner-image-3.jpg
 ---

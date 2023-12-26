@@ -1,18 +1,22 @@
 ---
 layout: page
-title: 关于作者
+title: About
 ---
 
-## 个人经历：
+## Experience
+- Qemu/Libvirt
+- Spice streaming
+
 - Openstack
  - Cinder
  - Glance
 
 - Linux 
  - KVM
- - 内核硬件适配
+ - PCI
+ - DRM
 
-### 联系我
+### Contact
 
-邮箱：linwendeng@gmail.com
+E-mail：linwendeng gmail.com
 
