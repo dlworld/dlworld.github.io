@@ -5,9 +5,9 @@ categories: [GPU]
 tags: virtualization
 ---
 
-{:toc}
+# Content
 
-<!--break-->
+{:toc}
 
 
 # Overview
@@ -184,7 +184,7 @@ Leverages Multi-Instance GPU (MIG) technology to physically partition a single N
 
 ![img](/images/wps5.jpg) 
 
-Scheduling Mechanism:
+**Scheduling Mechanism:**
 
 - GI-Level Scheduling: Tasks are scheduled at the granularity of GIs, not individual vGPUs.
 
@@ -202,7 +202,7 @@ Benefits:
 
 - Flexibility: Allows for different vGPU profiles and scheduling policies to be applied to different GIs, enabling customization for specific workload needs.
 
-Best Uses:
+**Best Uses:**
 
 Compute-Intensive Workloads: AI, machine learning, deep learning training and inference, data analytics, scientific computing, and high-performance computing (HPC) applications.
 
@@ -210,7 +210,7 @@ Multi-Tenant Environments: Cloud service providers or organizations sharing GPU 
 
 Workloads Requiring Isolation: Sensitive workloads with strict security or performance isolation requirements.
 
-Considerations:
+**Considerations:**
 
 GPU Compatibility: MIG and mig-backend scheduling are only available on select NVIDIA GPUs with MIG support (currently A100 and some newer models).
 
@@ -220,7 +220,7 @@ Management Complexity: Requires understanding of MIG technology and careful conf
 
 In summary, mig-backend scheduling offers a powerful approach for maximizing GPU utilization and performance for compute-intensive workloads in virtualized environments, while providing enhanced isolation and security.
 
- NVIDIA MIG
+# NVIDIA MIG
 
 NVIDIA Multi-Instance GPU (MIG) is a technology that allows a single physical GPU to be partitioned into multiple virtual GPUs (vGPUs). This enables multiple users or applications to share a single GPU, while each instance has its own dedicated resources, including memory, compute cores, and bandwidth.
 
@@ -242,7 +242,7 @@ MIG can be deployed on bare matel, GPU passthrough and vGPU.
 
  
 
-NVIDIA MIG - CUDA
+## NVIDIA MIG - CUDA
 
 Set MIG mode
 
@@ -264,7 +264,7 @@ Specify the MIG device running the CUDA program
 
  
 
-NVIDIA MIG - vGPU
+## NVIDIA MIG - vGPU
 
 enable SRIOV
 
@@ -311,8 +311,6 @@ Total VF(16) > max instance(10)
 # NVIDIA Management SDK
 
 NVIDIA vGPU Management SDK, a powerful tool for developers who want to build custom applications for monitoring and managing NVIDIA vGPU deployments.
-
- 
 
 ![img](/images/wps24.jpg) 
 
