@@ -5,12 +5,9 @@ categories: [GPU]
 tags: virtualization
 ---
 
-NVIDIA vGPU is a technology that allows a single physical GPU to be shared by multiple virtual machines (VMs) or users. 
+{:toc}
 
 <!--break-->
-
-
-[toc]
 
 
 # Overview
